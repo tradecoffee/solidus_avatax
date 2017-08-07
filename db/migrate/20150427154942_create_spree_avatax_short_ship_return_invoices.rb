@@ -10,24 +10,18 @@ class CreateSpreeAvataxShortShipReturnInvoices < ActiveRecord::Migration[5.1]
     end
 
     create_table :spree_avatax_short_ship_return_invoice_inventory_units do |t|
-      t.references :short_ship_return_invoice, null: false
-      t.references :inventory_unit, null: false
+      t.references :short_ship_return_invoice,
+                   index: {
+                     name: 'index_spree_avatax_short_ships_on_invoice_id'
+                   },
+                   null: false
+      t.references :inventory_unit,
+                   index: { name: 'index_spree_avatax_short_ships_on_unit_id' },
+                   null: false
     end
 
     # The default index names for these are too long for sqlite/mysql/postgres
 
-    add_index(
-      :spree_avatax_short_ship_return_invoice_inventory_units,
-      :short_ship_return_invoice_id,
-      unique: true,
-      name: 'index_spree_avatax_short_ships_on_invoice_id',
-    )
-    add_index(
-      :spree_avatax_short_ship_return_invoice_inventory_units,
-      :inventory_unit_id,
-      unique: true,
-      name: 'index_spree_avatax_short_ships_on_unit_id',
-    )
     add_index(
       :spree_avatax_short_ship_return_invoices,
       :doc_id,
