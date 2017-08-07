@@ -1,4 +1,4 @@
-class GenerateUncommittedSalesInvoices < ActiveRecord::Migration
+class GenerateUncommittedSalesInvoices < ActiveRecord::Migration[5.1]
   def up
     scope = Spree::Order.
       where(state: 'confirm').

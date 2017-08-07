@@ -1,4 +1,4 @@
-class CreateSpreeAvataxReturnInvoices < ActiveRecord::Migration
+class CreateSpreeAvataxReturnInvoices < ActiveRecord::Migration[5.1]
   def change
     create_table :spree_avatax_return_invoices do |t|
       t.integer :reimbursement_id

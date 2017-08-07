@@ -1,4 +1,4 @@
-class CreateSpreeAvataxShortShipReturnInvoices < ActiveRecord::Migration
+class CreateSpreeAvataxShortShipReturnInvoices < ActiveRecord::Migration[5.1]
   def change
     create_table :spree_avatax_short_ship_return_invoices do |t|
       t.boolean :committed, null: false

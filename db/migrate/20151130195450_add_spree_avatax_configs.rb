@@ -1,4 +1,4 @@
-class AddSpreeAvataxConfigs < ActiveRecord::Migration
+class AddSpreeAvataxConfigs < ActiveRecord::Migration[5.1]
   def change
     create_table 'spree_avatax_configs' do |t|
       t.boolean 'enabled', null: false

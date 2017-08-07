@@ -1,4 +1,4 @@
-class CreateSpreeAvataxSalesOrders < ActiveRecord::Migration
+class CreateSpreeAvataxSalesOrders < ActiveRecord::Migration[5.1]
   def change
     create_table :spree_avatax_sales_orders do |t|
       t.integer :order_id,             null: false
