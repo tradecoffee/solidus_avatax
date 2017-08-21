@@ -126,7 +126,7 @@ module SpreeAvatax::SalesShared
         included_tax_total: 0,
       })
 
-      order.recalculate
+      order.update!
       order.save!
     end
 
