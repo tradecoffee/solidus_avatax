@@ -4,6 +4,7 @@ describe Spree::ShippingRate do
   let!(:tax_rate) do
     rate = Spree::TaxRate.first
     rate.zone.countries << shipment.order.ship_address.country
+    rate.tax_categories.first.update_attribute :is_default, true
     rate
   end
 
@@ -16,7 +17,7 @@ describe Spree::ShippingRate do
   end
 
   let(:shipment) { create(:shipment) }
-  let(:shipping_method) { create(:shipping_method, tax_category: tax_rate.tax_category) }
+  let(:shipping_method) { create(:shipping_method, tax_category: tax_rate.tax_categories.default) }
 
   before do
     Spree::Config.shipping_rate_taxer_class.new.tax(shipping_rate)
