@@ -7,7 +7,7 @@ Spree::Adjustment.class_eval do
         in: [true],
         message: "Tax adjustments must always be finalized for Avatax",
       },
-      if: 'source_type == "Spree::TaxRate"',
+      if: :tax?
     }
   )
 
