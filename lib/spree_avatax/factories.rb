@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   sequence(:doc_id) { |n| n.to_s.rjust(16, '0') }
 
   factory :avatax_tax_calculator, class: SpreeAvatax::Calculator do
