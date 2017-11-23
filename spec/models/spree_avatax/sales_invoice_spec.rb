@@ -53,7 +53,7 @@ describe SpreeAvatax::SalesInvoice do
           { # line item
             no:                  "Spree::LineItem-#{line_item.id}",
             qty:                 line_item.quantity,
-            amount:              line_item.discounted_amount.round(2).to_f,
+            amount:              line_item.total_before_tax.round(2).to_f,
             origincodeline:      SpreeAvatax::SalesShared::DESTINATION_CODE,
             destinationcodeline: SpreeAvatax::SalesShared::DESTINATION_CODE,
 
@@ -66,7 +66,7 @@ describe SpreeAvatax::SalesInvoice do
           { # shipping charge
             no:                  "Spree::Shipment-#{shipment.id}",
             qty:                 1,
-            amount:              shipment.discounted_amount.round(2).to_f,
+            amount:              shipment.total_before_tax.round(2).to_f,
             origincodeline:      SpreeAvatax::SalesShared::DESTINATION_CODE,
             destinationcodeline: SpreeAvatax::SalesShared::DESTINATION_CODE,
 

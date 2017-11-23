@@ -126,7 +126,7 @@ module SpreeAvatax::SalesShared
         included_tax_total: 0,
       })
 
-      order.update!
+      order.recalculate
       order.save!
     end
 
@@ -177,7 +177,7 @@ module SpreeAvatax::SalesShared
           # Required Parameters
           no:                  avatax_id(line_item),
           qty:                 line_item.quantity,
-          amount:              line_item.discounted_amount.round(2).to_f,
+          amount:              line_item.total_before_tax.round(2).to_f,
           origincodeline:      DESTINATION_CODE, # We don't really send the correct value here
           destinationcodeline: DESTINATION_CODE,
 
@@ -198,7 +198,7 @@ module SpreeAvatax::SalesShared
           # Required Parameters
           no:                  avatax_id(shipment),
           qty:                 1,
-          amount:              shipment.discounted_amount.round(2).to_f,
+          amount:              shipment.total_before_tax.round(2).to_f,
           origincodeline:      DESTINATION_CODE, # We don't really send the correct value here
           destinationcodeline: DESTINATION_CODE,
 
