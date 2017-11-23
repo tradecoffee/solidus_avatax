@@ -20,7 +20,7 @@ describe Spree::ShippingRate do
   let(:shipping_method) { create(:shipping_method, tax_category: tax_rate.tax_categories.default) }
 
   before do
-    Spree::Config.shipping_rate_taxer_class.new.tax(shipping_rate)
+    Spree::Tax::ShippingRateTaxer.new.tax(shipping_rate)
   end
 
   it 'calculates shipping rate taxes as 0' do
