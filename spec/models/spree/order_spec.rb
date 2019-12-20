@@ -70,7 +70,7 @@ describe Spree::Order do
   context "when transitioning to complete" do
     before do
       subject.update_attributes!(state: 'confirm')
-      subject.payments.create!(state: 'checkout')
+      subject.payments << create(:payment, state: 'checkout')
     end
 
     it "commits the sales invoice" do
