@@ -31,7 +31,7 @@ module SpreeAvatax::SalesShared
       tax_line_data.each do |data|
         record, tax_line = data[:record], data[:tax_line]
 
-        tax = BigDecimal.new(tax_line[:tax]).abs
+        tax = BigDecimal(tax_line[:tax]).abs
 
         record.adjustments.tax.create!({
           adjustable: record,

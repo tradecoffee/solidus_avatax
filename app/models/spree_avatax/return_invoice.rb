@@ -58,7 +58,7 @@ class SpreeAvatax::ReturnInvoice < ActiveRecord::Base
           raise ReturnItemResponseMissing.new("couldn't find return item #{return_item.id} in avatax response")
         end
 
-        tax = BigDecimal.new(tax_line[:tax]).abs
+        tax = BigDecimal(tax_line[:tax]).abs
 
         return_item.update_attributes!({
           additional_tax_total: tax

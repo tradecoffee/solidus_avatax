@@ -84,13 +84,13 @@ describe SpreeAvatax::SalesInvoice do
     let(:gettax_response_line_item_tax_line) { Array.wrap(gettax_response[:tax_lines][:tax_line]).first }
     let(:gettax_response_shipment_tax_line) { Array.wrap(gettax_response[:tax_lines][:tax_line]).last }
     let(:order_calculated_tax) do
-      BigDecimal.new(gettax_response[:total_tax])
+      BigDecimal(gettax_response[:total_tax])
     end
     let(:line_item_calculated_tax) do
-      BigDecimal.new(gettax_response_line_item_tax_line[:tax]).abs
+      BigDecimal(gettax_response_line_item_tax_line[:tax]).abs
     end
     let(:shipment_calculated_tax) do
-      BigDecimal.new(gettax_response_shipment_tax_line[:tax]).abs
+      BigDecimal(gettax_response_shipment_tax_line[:tax]).abs
     end
 
     let!(:tax_svc_expectation) do
