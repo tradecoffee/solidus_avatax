@@ -10,7 +10,7 @@ class SpreeAvatax::Calculator < Spree::Calculator
   class TooManyPossibleAdjustments < StandardError; end
 
   def self.description
-    Spree.t(:avatax_description)
+    I18n.t('spree.avatax_description')
   end
 
   def compute(computable)

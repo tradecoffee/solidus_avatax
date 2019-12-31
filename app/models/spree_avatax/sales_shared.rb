@@ -37,7 +37,7 @@ module SpreeAvatax::SalesShared
           adjustable: record,
           amount:     tax,
           order:      order,
-          label:      Spree.t(:avatax_label),
+          label:      I18n.t('spree.avatax_label'),
           included:   false, # would be true for VAT
           source:     Spree::TaxRate.avatax_the_one_rate,
           finalized:  true, # this tells spree not to automatically recalculate avatax tax adjustments

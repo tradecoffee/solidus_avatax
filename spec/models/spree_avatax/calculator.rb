@@ -5,7 +5,7 @@ describe SpreeAvatax::Calculator do
 
   describe '.description' do
     it 'should not be nil' do
-      expect(SpreeAvatax::Calculator.description).to eq Spree.t(:avatax_description)
+      expect(SpreeAvatax::Calculator.description).to eq I18n.t('spree.avatax_description')
     end
   end
 
