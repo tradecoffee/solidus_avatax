@@ -31,19 +31,18 @@ module SpreeAvatax::SalesShared
       tax_line_data.each do |data|
         record, tax_line = data[:record], data[:tax_line]
 
-        tax = BigDecimal.new(tax_line[:tax]).abs
+        tax = BigDecimal(tax_line[:tax]).abs
 
         record.adjustments.tax.create!({
           adjustable: record,
           amount:     tax,
           order:      order,
-          label:      Spree.t(:avatax_label),
+          label:      I18n.t('spree.avatax_label'),
           included:   false, # would be true for VAT
           source:     Spree::TaxRate.avatax_the_one_rate,
           finalized:  true, # this tells spree not to automatically recalculate avatax tax adjustments
         })
 
-        Spree::ItemAdjustments.new(record).update
         record.save!
       end
 
@@ -119,9 +118,6 @@ module SpreeAvatax::SalesShared
           adjustment_total: 0,
           included_tax_total: 0,
         })
-
-        Spree::ItemAdjustments.new(taxable_record).update
-        taxable_record.save!
       end
 
       order.update_attributes!({
@@ -130,7 +126,7 @@ module SpreeAvatax::SalesShared
         included_tax_total: 0,
       })
 
-      order.update!
+      order.recalculate
       order.save!
     end
 
@@ -181,7 +177,7 @@ module SpreeAvatax::SalesShared
           # Required Parameters
           no:                  avatax_id(line_item),
           qty:                 line_item.quantity,
-          amount:              line_item.discounted_amount.round(2).to_f,
+          amount:              line_item.total_before_tax.round(2).to_f,
           origincodeline:      DESTINATION_CODE, # We don't really send the correct value here
           destinationcodeline: DESTINATION_CODE,
 
@@ -202,7 +198,7 @@ module SpreeAvatax::SalesShared
           # Required Parameters
           no:                  avatax_id(shipment),
           qty:                 1,
-          amount:              shipment.discounted_amount.round(2).to_f,
+          amount:              shipment.total_before_tax.round(2).to_f,
           origincodeline:      DESTINATION_CODE, # We don't really send the correct value here
           destinationcodeline: DESTINATION_CODE,
 

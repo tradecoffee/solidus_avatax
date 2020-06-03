@@ -17,8 +17,8 @@ Gem::Specification.new do |s|
   s.require_path = "lib"
   s.requirements << "none"
 
-  s.add_dependency "solidus_core", ">= 1.3.0.alpha", "< 1.4"
-  s.add_dependency "hashie",      "~> 2.l.5"
+  s.add_dependency "solidus_core", ">= 2.4", "< 3"
+  s.add_dependency "hashie",      "~> 3.5"
   s.add_dependency "multi_json"
   s.add_dependency "Avatax_TaxService", "~> 2.0.0"
 
@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "sass-rails"
   s.add_development_dependency "coffee-rails"
-  s.add_development_dependency "factory_girl", "~> 4.2"
+  s.add_development_dependency "factory_bot", "~> 4.8"
   s.add_development_dependency "capybara", "~> 2.1"
   s.add_development_dependency "database_cleaner"
   s.add_development_dependency "ffaker"

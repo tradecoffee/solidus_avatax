@@ -1,4 +1,4 @@
-class FixAvataxShortShipIndex < ActiveRecord::Migration
+class FixAvataxShortShipIndex < ActiveRecord::Migration[5.1]
   def up
     remove_index(
       :spree_avatax_short_ship_return_invoice_inventory_units,

@@ -34,7 +34,7 @@ Spree::Order.class_eval do
     #       recursion since it will cause another "after_save" to be called with the dirty attributes
     #       in the same state. Instead just move the order out of the "confirm" state so that it
     #       will have to go through tax calculations again.
-    if ship_address_id_changed? && confirm?
+    if saved_change_to_ship_address_id? && confirm?
       Rails.logger.info "[avatax] order address change detected for order #{number} while in confirm state. resetting order state to 'payment'."
       update_columns(state: 'payment', updated_at: Time.now)
     end

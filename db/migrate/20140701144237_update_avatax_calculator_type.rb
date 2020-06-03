@@ -1,4 +1,4 @@
-class UpdateAvataxCalculatorType < ActiveRecord::Migration
+class UpdateAvataxCalculatorType < ActiveRecord::Migration[5.1]
   def up
     Spree::Calculator.where(
       type: "SpreeAvatax::Calculator"

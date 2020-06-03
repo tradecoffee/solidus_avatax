@@ -1,7 +1,7 @@
 require "spec_helper"
 
 RSpec.describe "Taxes with Store Credits" do
-  let(:user) { FactoryGirl.create(:user, password: "Alderaan") }
+  let(:user) { FactoryBot.create(:user, password: "Alderaan") }
   let!(:store) { create(:store, default: true) }
 
   before do
@@ -12,15 +12,15 @@ RSpec.describe "Taxes with Store Credits" do
     SpreeAvatax::Config.company_code = ENV["AVATAX_COMPANY_CODE"]
 
     # Set up a zone
-    zone = FactoryGirl.create(:zone)
-    country = FactoryGirl.create(:country, name: "Tatooine")
+    zone = FactoryBot.create(:zone)
+    country = FactoryBot.create(:country, name: "Tatooine")
     zone.members << Spree::ZoneMember.create(zoneable: country)
 
     # Product, payment method and shipping method
-    FactoryGirl.create(:credit_card_payment_method)
-    FactoryGirl.create(:store_credit_payment_method)
-    FactoryGirl.create(:free_shipping_method)
-    FactoryGirl.create(:product, name: "DL-44", price: 19.99)
+    FactoryBot.create(:credit_card_payment_method)
+    FactoryBot.create(:store_credit_payment_method)
+    FactoryBot.create(:free_shipping_method)
+    FactoryBot.create(:product, name: "DL-44", price: 19.99)
 
     # Login
     visit spree.login_path
@@ -37,7 +37,7 @@ RSpec.describe "Taxes with Store Credits" do
   context "when there are enough credits to cover everything" do
     before do
       # Add enough credit to cover the order.
-      FactoryGirl.create(
+      FactoryBot.create(
         :store_credit, user: user, amount: 1000.00
       )
 

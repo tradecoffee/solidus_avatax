@@ -53,7 +53,7 @@ describe SpreeAvatax::SalesInvoice do
           { # line item
             no:                  "Spree::LineItem-#{line_item.id}",
             qty:                 line_item.quantity,
-            amount:              line_item.discounted_amount.round(2).to_f,
+            amount:              line_item.total_before_tax.round(2).to_f,
             origincodeline:      SpreeAvatax::SalesShared::DESTINATION_CODE,
             destinationcodeline: SpreeAvatax::SalesShared::DESTINATION_CODE,
 
@@ -66,7 +66,7 @@ describe SpreeAvatax::SalesInvoice do
           { # shipping charge
             no:                  "Spree::Shipment-#{shipment.id}",
             qty:                 1,
-            amount:              shipment.discounted_amount.round(2).to_f,
+            amount:              shipment.total_before_tax.round(2).to_f,
             origincodeline:      SpreeAvatax::SalesShared::DESTINATION_CODE,
             destinationcodeline: SpreeAvatax::SalesShared::DESTINATION_CODE,
 
@@ -84,13 +84,13 @@ describe SpreeAvatax::SalesInvoice do
     let(:gettax_response_line_item_tax_line) { Array.wrap(gettax_response[:tax_lines][:tax_line]).first }
     let(:gettax_response_shipment_tax_line) { Array.wrap(gettax_response[:tax_lines][:tax_line]).last }
     let(:order_calculated_tax) do
-      BigDecimal.new(gettax_response[:total_tax])
+      BigDecimal(gettax_response[:total_tax])
     end
     let(:line_item_calculated_tax) do
-      BigDecimal.new(gettax_response_line_item_tax_line[:tax]).abs
+      BigDecimal(gettax_response_line_item_tax_line[:tax]).abs
     end
     let(:shipment_calculated_tax) do
-      BigDecimal.new(gettax_response_shipment_tax_line[:tax]).abs
+      BigDecimal(gettax_response_shipment_tax_line[:tax]).abs
     end
 
     let!(:tax_svc_expectation) do

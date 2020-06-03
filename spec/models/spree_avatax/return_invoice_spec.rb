@@ -53,7 +53,7 @@ describe SpreeAvatax::ReturnInvoice do
     let(:gettax_response) { return_invoice_gettax_response(reimbursement.number, return_item.id) }
     let(:gettax_response_return_item_tax_line) { Array.wrap(gettax_response[:tax_lines][:tax_line]).first }
     let(:return_item_calculated_tax) do
-      BigDecimal.new(gettax_response_return_item_tax_line[:tax]).abs
+      BigDecimal(gettax_response_return_item_tax_line[:tax]).abs
     end
 
     let!(:tax_svc_expectation) do

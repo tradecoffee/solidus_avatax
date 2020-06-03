@@ -1,4 +1,4 @@
-class AddAvataxResponseAtToOrders < ActiveRecord::Migration
+class AddAvataxResponseAtToOrders < ActiveRecord::Migration[5.1]
   def change
     add_column :spree_orders, :avatax_response_at, :datetime
   end

@@ -58,7 +58,7 @@ describe "Tax Calculation" do
     end
 
     let(:promotion) do
-      FactoryGirl.create(
+      FactoryBot.create(
         :promotion,
         code: "order_promotion",
         promotion_actions: [
@@ -70,7 +70,7 @@ describe "Tax Calculation" do
     end
 
     let(:line_item_promotion) do
-      FactoryGirl.create(
+      FactoryBot.create(
         :promotion_with_item_total_rule,
         code: 'line_item_promotion'
       )
